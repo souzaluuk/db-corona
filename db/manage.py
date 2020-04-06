@@ -1,10 +1,10 @@
 from sys import argv
+from settings import engine
+from models import Base
 
 
-def make_migrate():
-    from settings import engine
-    from models import Base
-    Base.metadata.create_all(engine)
+def make_migrate(engine_local=None):
+    Base.metadata.create_all(engine_local or engine)
 
 
 if __name__ == "__main__":

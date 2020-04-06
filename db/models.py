@@ -1,40 +1,41 @@
-from sqlalchemy import Column, String, Integer, ForeignKey, DECIMAL, TIMESTAMP
+from sqlalchemy import Column, String, Integer, Float, ForeignKey, DECIMAL, DateTime
 from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
 
 
-class No(Base):
-    __tablename__ = 'nos'
+class Node(Base):
+    __tablename__ = 'nodes'
 
     id = Column(Integer, primary_key=True)
-    latitude = Column(DECIMAL)
-    longitude = Column(DECIMAL)
+    name = Column(String(50))
+    lat = Column(DECIMAL, nullable=False)
+    lon = Column(DECIMAL, nullable=False)
 
     def __repr__(self):
-        return f'< No(id="{self.id}", latitude="{self.latitude}", longitude="{self.longitude}") >'
+        return f'< Node(id="{self.id}", name="{self.name}", lat="{self.lat}", lon="{self.lon}") >'
 
 
-class Aresta(Base):
-    __tablename__ = 'arestas'
+class Edge(Base):
+    __tablename__ = 'edges'
 
     id = Column(Integer, primary_key=True)
-    nome = Column(String(50))
-    no_1_id = Column(Integer, ForeignKey(No.id))
-    no_2_id = Column(Integer, ForeignKey(No.id))
+    name = Column(String(50), nullable=False, unique=True)
+    id_node_1 = Column(Integer, ForeignKey(Node.id), nullable=False)
+    id_node_2 = Column(Integer, ForeignKey(Node.id), nullable=False)
 
     def __repr__(self):
-        return f'< Aresta(id="{self.id}", no_1="{self.no_1_id}", no_2="{self.no_2_id}") >'
+        return f'< Edge(id="{self.id}", name="{self.name}", id_node_1="{self.id_node_1}", id_node_2="{self.id_node_2}") >'
 
 
-class Estimativa(Base):
-    __tablename__ = 'estimativas'
+class Distance(Base):
+    __tablename__ = 'distances'
 
     id = Column(Integer, primary_key=True)
-    timestamp = Column(TIMESTAMP)
-    tempo = Column(DECIMAL)
-    distancia = Column(DECIMAL)
-    aresta_id = Column(Integer, ForeignKey(Aresta.id))
+    stamp = Column(DateTime, nullable=False)
+    time = Column(Float, nullable=False)
+    dist = Column(Float, nullable=False)
+    id_edge = Column(Integer, ForeignKey(Edge.id), nullable=False)
 
     def __repr__(self):
-        return f'< Estimativa(id="{self.id}", timestamp="{self.timestamp}", tempo="{self.tempo}", distancia="{self.distancia}", aresta_id="{self.aresta_id}")>'
+        return f'< Distance(id="{self.id}", stamp="{self.stamp}", time="{self.time}", dist="{self.dist}", id_edge="{self.id_edge}") >'
