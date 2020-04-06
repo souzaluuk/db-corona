@@ -1,9 +1,9 @@
 from sys import argv
-from settings import engine
-from models import Base
 
 
 def make_migrate(engine_local=None):
+    from settings import engine
+    from models import Base
     Base.metadata.create_all(engine_local or engine)
 
 
