@@ -1,0 +1,13 @@
+version: "3.7"
+
+services:
+  postgres:
+    container_name: postgres-corona
+    image: postgres
+    env_file: db/.env
+    volumes:
+      - ${PWD}/pg-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+volumes:
+  postgres:
