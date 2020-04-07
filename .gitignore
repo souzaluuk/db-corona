@@ -125,3 +125,6 @@ pip-selfcheck.json
 # http://iamzed.com/2009/05/07/a-primer-on-virtualenv/
 
 # End of https://www.gitignore.io/api/venv,python,virtualenv
+
+# Tests
+dev.sqlite
