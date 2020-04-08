@@ -8,7 +8,18 @@ services:
     volumes:
       - ${PWD}/pg-data:/var/lib/postgresql/data
     ports:
-      - "5432:5432"
-
+      - 5432:5432
+  db-tests:
+    container_name: postgres-corona-tests
+    image: postgres
+    environment:
+      POSTGRES_USER: corona_tests
+      POSTGRES_PASSWORD: corona_tests
+      POSTGRES_DB: corona_tests
+    volumes:
+      - ${PWD}/pg-data:/var/lib/postgresql/tests
+    ports:
+      - 54321:5432
 volumes:
   postgres:
+  db-tests:

@@ -12,6 +12,6 @@ host = env('POSTGRES_HOST', 'localhost')
 port = env('POSTGRES_PORT', '5432')
 
 engine = create_engine(
-    f'postgresql://{user}:{password}@{host}:{port}/{name}', echo=True)
+    f'postgresql://{user}:{password}@{host}:{port}/{name}')
 
 Session = sessionmaker(bind=engine)
