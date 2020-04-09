@@ -1,15 +1,13 @@
 from sys import argv
+from settings import engine
+from models import Base
 
 
 def create_migrate(engine_local=None):
-    from settings import engine
-    from models import Base
     Base.metadata.create_all(engine_local or engine)
 
 
 def drop_migrate(engine_local=None):
-    from settings import engine
-    from models import Base
     Base.metadata.drop_all(engine_local or engine)
 
 

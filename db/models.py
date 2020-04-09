@@ -30,7 +30,7 @@ class Edge(Base):
     __tablename__ = 'edges'
 
     id = Column(Integer, primary_key=True)
-    name = Column(String(50), nullable=False, unique=True)
+    name = Column(String(80), nullable=False, unique=True)
     id_node_1 = Column(Integer, ForeignKey(Node.id), nullable=False)
     id_node_2 = Column(Integer, ForeignKey(Node.id), nullable=False)
 

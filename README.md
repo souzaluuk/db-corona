@@ -33,3 +33,10 @@ $ source env/bin/activate
 (env)$ cd db
 (env)$ python -m unittest -v
 ```
+
+### Run example
+
+```bash
+(env)$ docker-compose [up|start] postgres
+(env)$ python example.py
+```
